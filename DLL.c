@@ -8,7 +8,7 @@ struct node
     struct node*next;
     struct node*pre;
 };
-struct node *start=NULL;
+struct node *start=NULL,*end=NULL;
 struct node *temp,*ptr,*ptrbefore;
 
 struct node *newnode()
@@ -16,6 +16,27 @@ struct node *newnode()
     return(struct node *)malloc(sizeof(struct node));
 };
 
+void reverse()
+{
+    struct node *ptr,*temp;
+    ptr=start;
+
+    while(ptr!=NULL)
+    {
+        temp=ptr->next;
+        ptr->next=ptr->pre;
+        ptr->pre=temp;
+
+        ptr=temp;
+    }
+
+        temp=start;
+        start=end;
+        end=temp;
+        displayl();
+printf("\n Reverse successfully!!!");
+
+}
 void deletenode(struct node *ptr)
 {
     ptr->next=NULL;
@@ -67,11 +88,11 @@ void displayl()
     }
     else
     {
-        ptr=start;
-        while(ptr!=NULL)
+        ptr->next=NULL;
+        while(ptr->next!=start)
         {
               printf("\t%d",ptr->data);
-            ptr=ptr->next;
+            ptr=ptr->pre;
 
         }
     }
@@ -375,8 +396,9 @@ void search()
 
 void main()
 {
-    create();
-    displayl();
+   create();
+
+   /* displayl();
    insert_at_pos();
     displayl();
     insert_before_value();
@@ -387,7 +409,12 @@ void main()
     displayl();
     delete_by_pos();
     displayl();
-    search();
+    search();*/
+
+    //reverse();
+    displayl();
+
+     displayl();
 
 
 }
